@@ -1,0 +1,11 @@
+FROM node:16.14.2
+
+COPY ./frontend/app /var/app
+
+WORKDIR /var/app
+
+EXPOSE 80
+
+USER $UID
+
+CMD [ "npm", "i" ]

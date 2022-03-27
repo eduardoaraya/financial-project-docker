@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      dockerfile: ./.docker/Dockerfile.frontend
+      context: .
+    ports:
+      - 80:80
+    volumes:
+      - ./frontend/app/:/var/app
+    networks:
+      - backend
+    env_file:
+      - ./.env.dev
+    tty: true
+  backend:
+    build:
+      dockerfile: ./.docker/Dockerfile.backend
+      context: .
+    ports:
+      - 3400:3400
+    volumes:
+      - ./backend/app/:/var/app
+    networks:
+      - backend
+    env_file:
+      - ./.env.dev
+    tty: true
+  db:
+    build:
+      dockerfile: ./.docker/Dockerfile.database
+      context: .
+    ports:
+      - 5432:5432
+    networks:
+      - backend
+    env_file:
+      - ./.env.dev
+    
+
+networks:
+  backend:
+    driver: bridge
+

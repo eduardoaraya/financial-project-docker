@@ -1,0 +1,11 @@
+FROM node:16.14.2
+
+COPY ./backend/app /var/app
+
+WORKDIR /var/app
+
+EXPOSE 3400
+
+USER $UID
+
+CMD [ "npm", "i" ]

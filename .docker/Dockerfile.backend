@@ -6,6 +6,4 @@ WORKDIR /var/app
 
 EXPOSE 3400
 
-USER $UID
-
-CMD [ "npm", "i" ]
+USER 1000:1000

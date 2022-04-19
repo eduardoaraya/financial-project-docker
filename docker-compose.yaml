@@ -14,12 +14,14 @@ services:
     env_file:
       - ./.env.dev
     tty: true
+    
   backend:
     build:
       dockerfile: ./.docker/Dockerfile.backend
       context: .
     ports:
       - 3400:3400
+      - 5555:5555
     volumes:
       - ./backend/app/:/var/app
     networks:
@@ -27,6 +29,9 @@ services:
     env_file:
       - ./.env.dev
     tty: true
+    depends_on:
+      - db
+
   db:
     build:
       dockerfile: ./.docker/Dockerfile.database
@@ -37,7 +42,6 @@ services:
       - backend
     env_file:
       - ./.env.dev
-    
 
 networks:
   backend:

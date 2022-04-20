@@ -42,6 +42,12 @@ services:
       - backend
     env_file:
       - ./.env.dev
+  adminer:
+    image: adminer
+    networks:
+    - backend
+    ports:
+      - 8080:8080
 
 networks:
   backend:
